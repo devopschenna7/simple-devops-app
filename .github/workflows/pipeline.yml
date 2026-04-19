@@ -57,4 +57,4 @@ jobs:
       # 🌐 Port forward (background)
       - name: Port Forward
         run: |
-          nohup kubectl port-forward svc/ci-demo 8080:80 &
+          kubectl port-forward svc/ci-demo 8080:80 &
