@@ -56,8 +56,8 @@ jobs:
 
       - name: Update image
         run: |
-          kubectl set image deployment/python-app \
-            python-app=python-app:${GITHUB_SHA}
+          kubectl set image deployment/ci-demo \
+            ci-demo=ci-demo:${GITHUB_SHA}
 
 
       # 🌐 Port forward (background)
