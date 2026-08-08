@@ -41,18 +41,24 @@ jobs:
       # 🐳 Build Docker image
       - name: Build Docker
         run: |
-          docker build -t ci-demo:latest .
+          docker build -t ci-demo:${GITHUB_SHA} .
 
       # 📦 Load into KIND
       - name: Load image into KIND
         run: |
-          kind load docker-image ci-demo:latest --name kind
+          kind load docker-image ci-demo:${GITHUB_SHA} --name kind
 
       # ☸️ Deploy to Kubernetes
       - name: Deploy to K8s
         run: |
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
+
+      - name: Update image
+        run: |
+          kubectl set image deployment/python-app \
+            python-app=python-app:${GITHUB_SHA}
+
 
       # 🌐 Port forward (background)
       - name: Port Forward
