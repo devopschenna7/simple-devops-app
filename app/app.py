@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return f"CI/CD Demo 🚀 10 + 11 = {add(10,11)}"
+    return f"CI/CD Demo 🚀 10 + 20 = {add(10,20)}"
 
 
 if __name__ == "__main__":
